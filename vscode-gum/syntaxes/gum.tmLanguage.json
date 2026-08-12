@@ -1,0 +1,227 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Gum",
+  "scopeName": "source.gum",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#hotkeys"
+    },
+    {
+      "include": "#declarations"
+    },
+    {
+      "include": "#functions"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#sendKeys"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#variables"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.gum",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.gum",
+          "begin": "\"",
+          "end": "\""
+        }
+      ]
+    },
+    "hotkeys": {
+      "patterns": [
+        {
+          "name": "meta.hotkey.block.gum",
+          "match": "^\\s*([A-Za-z_][A-Za-z0-9_]*|F(?:[1-9]|1[0-2])|Enter|Tab|Space|Esc|Delete|Backspace|Home|End|PgUp|PgDn|Up|Down|Left|Right)\\s*(::)\\s*$",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.hotkey.gum"
+            },
+            "2": {
+              "name": "punctuation.definition.hotkey.gum"
+            }
+          }
+        },
+        {
+          "name": "meta.hotkey.inline.gum",
+          "match": "^\\s*([A-Za-z_][A-Za-z0-9_]*|F(?:[1-9]|1[0-2])|Enter|Tab|Space|Esc|Delete|Backspace|Home|End|PgUp|PgDn|Up|Down|Left|Right)\\s*(:)(?=\\s*\\S)",
+          "captures": {
+            "1": {
+              "name": "entity.name.function.hotkey.gum"
+            },
+            "2": {
+              "name": "punctuation.definition.hotkey.gum"
+            }
+          }
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "name": "meta.variable.declaration.gum",
+          "match": "\\b(let)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "storage.type.variable.gum"
+            },
+            "2": {
+              "name": "variable.other.readwrite.declaration.gum"
+            }
+          }
+        },
+        {
+          "name": "meta.variable.assignment.gum",
+          "match": "\\b(set)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.assignment.gum"
+            },
+            "2": {
+              "name": "variable.other.readwrite.assignment.gum"
+            }
+          }
+        },
+        {
+          "name": "meta.function.declaration.gum",
+          "match": "\\b(group)\\s+([A-Za-z_][A-Za-z0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "storage.type.function.gum"
+            },
+            "2": {
+              "name": "entity.name.function.gum"
+            }
+          }
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.gum",
+          "match": "\\b(random|rand|seed|input|type|assert|http_get|http_post|json_parse|json_get|json_array_length|json_array_get|json_type|tg_cmd_hash|os_(?:exists|isfile|isdir|touch|write|append|read|remove|mkdir|rmdir|rename|copy))\\b(?=\\s*\\()"
+        },
+        {
+          "name": "entity.name.function.call.gum",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b(?=\\s*\\()"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.gum",
+          "match": "\\b(if|elif|else|end)\\b"
+        },
+        {
+          "name": "keyword.control.loop.gum",
+          "match": "\\b(loop|unloop)\\b"
+        },
+        {
+          "name": "keyword.control.import.gum",
+          "match": "\\b(use)\\b"
+        },
+        {
+          "name": "keyword.control.definition.gum",
+          "match": "\\b(group)\\b"
+        },
+        {
+          "name": "support.function.command.gum",
+          "match": "\\b(print|msg|playsound|send|save|load|click|mousedown|mouseup|mousehold|mousemove|sleep|toggle|set|tg_token|tg_on|tg_send|tg_reply|tg_typing|tg_photo|tg_sticker|tg_delete|tg_edit|tg_callback_answer|tg_get_chat|tg_leave)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.gum",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.nil.gum",
+          "match": "\\bnil\\b"
+        },
+        {
+          "name": "constant.language.tgglobal.gum",
+          "match": "\\b(TG_CHAT_ID|TG_TEXT|TG_MESSAGE_ID|TG_CALLBACK_DATA|TG_CALLBACK_ID)\\b"
+        }
+      ]
+    },
+    "sendKeys": {
+      "patterns": [
+        {
+          "name": "constant.character.key.gum",
+          "match": "\\{(?:Enter|Tab|Space|Esc|Up|Down|Left|Right|Delete|Backspace|Home|End|PgUp|PgDn|F(?:[1-9]|1[0-2])|[A-Za-z0-9])\\}"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.gum",
+          "match": "\\b\\d+(?:\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.gum",
+          "match": "==|!=|>=|<=|>|<"
+        },
+        {
+          "name": "keyword.operator.assignment.gum",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.arithmetic.gum",
+          "match": "\\+|-|\\*|/"
+        },
+        {
+          "name": "keyword.operator.logical.gum",
+          "match": "\\b(and|or)\\b|!"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.readwrite.assignment.gum",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b(?=\\s*=(?!=))"
+        },
+        {
+          "name": "variable.other.readwrite.gum",
+          "match": "\\b[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}
