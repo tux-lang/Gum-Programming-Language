@@ -1,0 +1,169 @@
+{
+  "name": "gum-syntax",
+  "displayName": "Gum",
+  "description": "Syntax highlighting, snippets, and quick runner for Gum (.gum / .sek) scripts.",
+  "version": "0.3.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "gum",
+    "sek",
+    "seklang",
+    "syntax",
+    "hotkeys",
+    "telegram"
+  ],
+  "activationEvents": [
+    "onLanguage:gum",
+    "onCommand:gum.runScript",
+    "onCommand:gum.runScriptInTerminal",
+    "onCommand:gum.stopScript",
+    "onCommand:gum.toggleLivePreview"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gum.runScript",
+        "title": "Gum: Run Script",
+        "icon": "$(play)",
+        "category": "Gum"
+      },
+      {
+        "command": "gum.runScriptInTerminal",
+        "title": "Gum: Run Script in Terminal",
+        "icon": "$(terminal)",
+        "category": "Gum"
+      },
+      {
+        "command": "gum.stopScript",
+        "title": "Gum: Stop Script",
+        "icon": "$(debug-stop)",
+        "category": "Gum"
+      },
+      {
+        "command": "gum.toggleLivePreview",
+        "title": "Gum: Toggle Live Run",
+        "icon": "$(sync)",
+        "category": "Gum"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "gum.runScript",
+          "when": "resourceLangId == gum",
+          "group": "navigation"
+        },
+        {
+          "command": "gum.stopScript",
+          "when": "resourceLangId == gum",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "gum.runScript",
+          "when": "resourceLangId == gum",
+          "group": "navigation"
+        },
+        {
+          "command": "gum.runScriptInTerminal",
+          "when": "resourceLangId == gum",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "gum.runScript",
+        "key": "f5",
+        "when": "editorTextFocus && editorLangId == gum"
+      },
+      {
+        "command": "gum.runScript",
+        "key": "ctrl+f5",
+        "mac": "cmd+f5",
+        "when": "editorTextFocus && editorLangId == gum"
+      },
+      {
+        "command": "gum.stopScript",
+        "key": "shift+f5",
+        "when": "editorTextFocus && editorLangId == gum"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "Gum",
+        "properties": {
+          "gum.sekcPath": {
+            "type": "string",
+            "default": "sekc.exe",
+            "description": "Путь к sekc.exe или команду sekc для запуска Gum скриптов."
+          },
+          "gum.runCwd": {
+            "type": "string",
+            "default": "",
+            "description": "Рабочая папка запуска. Если пусто, используется папка workspace или папка скрипта."
+          },
+          "gum.runInTerminal": {
+            "type": "boolean",
+            "default": true,
+            "description": "Run normal Gum launches in the VS Code terminal so input(...) can read keyboard input. Live Run still uses Output."
+          },
+          "gum.livePreviewDelay": {
+            "type": "number",
+            "default": 500,
+            "minimum": 100,
+            "description": "Задержка в миллисекундах перед live-запуском после изменения .gum/.sek файла."
+          },
+          "gum.showOutputOnRun": {
+            "type": "boolean",
+            "default": true,
+            "description": "Автоматически показывать окно вывода при запуске .gum/.sek файла."
+          }
+        }
+      }
+    ],
+    "languages": [
+      {
+        "id": "gum",
+        "aliases": [
+          "Gum",
+          "gum",
+          "sek"
+        ],
+        "extensions": [
+          ".gum",
+          ".sek"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gum",
+        "scopeName": "source.gum",
+        "path": "./syntaxes/gum.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "gum",
+        "path": "./snippets/gum.code-snippets"
+      }
+    ],
+    "configurationDefaults": {
+      "[gum]": {
+        "editor.semanticHighlighting.enabled": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+      }
+    }
+  }
+}
