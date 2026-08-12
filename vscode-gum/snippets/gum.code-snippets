@@ -1,0 +1,139 @@
+{
+  "Print value": {
+    "prefix": "print",
+    "body": [
+      "print ${1:value}"
+    ],
+    "description": "Печать значения в консоль"
+  },
+  "Variable": {
+    "prefix": "let",
+    "body": [
+      "let ${1:name} = ${2:value}"
+    ],
+    "description": "Новая переменная через let"
+  },
+  "Set Variable": {
+    "prefix": "set",
+    "body": [
+      "set ${1:name} = ${2:value}"
+    ],
+    "description": "Изменить переменную через set"
+  },
+  "Group": {
+    "prefix": "group",
+    "body": [
+      "group ${1:name}",
+      "    ${2:print \"ok\"}",
+      "end",
+      "",
+      "${1:name}()"
+    ],
+    "description": "Группа команд через group"
+  },
+  "If": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition}",
+      "    ${2:print \"ok\"}",
+      "end"
+    ],
+    "description": "Условный блок if"
+  },
+  "If Else": {
+    "prefix": "ife",
+    "body": [
+      "if ${1:condition}",
+      "    ${2:print \"yes\"}",
+      "else",
+      "    ${3:print \"no\"}",
+      "end"
+    ],
+    "description": "Условие с веткой else"
+  },
+  "Loop": {
+    "prefix": "loop",
+    "body": [
+      "loop ${1:5}",
+      "    ${2:print \"tick\"}",
+      "end"
+    ],
+    "description": "Цикл с числом повторов"
+  },
+  "Infinite Loop": {
+    "prefix": "loopinf",
+    "body": [
+      "loop",
+      "    ${1:click}",
+      "    sleep ${2:50}",
+      "end"
+    ],
+    "description": "Бесконечный цикл"
+  },
+  "Hotkey": {
+    "prefix": "hotkey",
+    "body": [
+      "${1:x}::",
+      "    ${2:print \"pressed ${1:x}\"}"
+    ],
+    "description": "Хоткей с блоком команд"
+  },
+  "Inline Hotkey": {
+    "prefix": "ihotkey",
+    "body": [
+      "${1:f}: ${2:toggle enabled}"
+    ],
+    "description": "Хоткей в одну строку"
+  },
+  "Use Library": {
+    "prefix": "use",
+    "body": [
+      "use \"${1:lib_dev.sek}\""
+    ],
+    "description": "Подключить .sek библиотеку"
+  },
+  "Assert Type": {
+    "prefix": "asserttype",
+    "body": [
+      "assert(type(${1:value}) == \"${2:number}\", \"${1:value} must be ${2:number}\")"
+    ],
+    "description": "Проверка типа через assert"
+  },
+  "Send Enter": {
+    "prefix": "sendenter",
+    "body": [
+      "send \"${1:text}\"{Enter}"
+    ],
+    "description": "Отправить текст и Enter"
+  },
+  "Save Variables": {
+    "prefix": "save",
+    "body": [
+      "save \"${1:save.seksave}\""
+    ],
+    "description": "Сохранить переменные в файл"
+  },
+  "Load Variables": {
+    "prefix": "load",
+    "body": [
+      "load \"${1:save.seksave}\""
+    ],
+    "description": "Загрузить переменные из файла"
+  },
+  "OS Write File": {
+    "prefix": "oswrite",
+    "body": [
+      "os_write(\"${1:file.txt}\", \"${2:text}\")"
+    ],
+    "description": "Write text to a file"
+  },
+  "OS File Demo": {
+    "prefix": "osfile",
+    "body": [
+      "os_mkdir(\"${1:folder}\")",
+      "os_write(\"${1:folder}/${2:file.txt}\", \"${3:text}\")",
+      "print os_read(\"${1:folder}/${2:file.txt}\")"
+    ],
+    "description": "Create a folder, write a file, and read it"
+  }
+}
