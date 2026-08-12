@@ -1,0 +1,35 @@
+# Example: complex JSON parsing - nested objects, arrays, nulls and json_type.
+
+let text = "{\"user\":{\"name\":\"Alice\",\"age\":30,\"active\":true,\"friends\":[\"Bob\",\"Carol\",\"Dave\"],\"meta\":{\"score\":9.5,\"note\":null}},\"items\":[1,2,3],\"empty\":[],\"obj\":{\"a\":{\"b\":{\"c\":42}}}}"
+
+let root = json_parse(text)
+print "root type: " + json_type(root)
+
+let user = json_get(root, "user")
+print "user.name: " + json_get(user, "name")
+print "user.age: " + json_get(user, "age")
+print "user.active: " + json_get(user, "active")
+
+let friends = json_get(user, "friends")
+print "friends type: " + json_type(friends)
+print "friends count: " + json_array_length(friends)
+print "friends[0]: " + json_array_get(friends, 0)
+print "friends[1]: " + json_array_get(friends, 1)
+print "friends[2]: " + json_array_get(friends, 2)
+
+let meta = json_get(user, "meta")
+print "meta.score: " + json_get(meta, "score")
+print "meta.note type: " + json_type(json_get(meta, "note"))
+
+let items = json_get(root, "items")
+print "items[2]: " + json_array_get(items, 2)
+
+let c = json_get(json_get(json_get(json_get(root, "obj"), "a"), "b"), "c")
+print "nested c: " + c
+
+print "missing key: " + json_get(root, "does_not_exist")
+print "array length of object: " + json_array_length(user)
+print "array_get out of range: " + json_array_get(friends, 99)
+
+let bad = json_parse("this is not json")
+print "bad parse type: " + type(bad)

@@ -1,0 +1,19 @@
+# Пример использования mousemove
+
+print "Пример: перемещаю курсор и кликаю"
+
+# Перемещает курсор в случайные координаты и кликает
+let x = random(800)
+let y = random(600)
+mousemove, x, y
+sleep 200
+click
+
+# Пример хоткея: нажми F2 чтобы выполнить
+F2::
+    print "F2 pressed: move and click"
+    let tx = random(800)
+    let ty = random(600)
+    mousemove, tx, ty
+    sleep 100
+    click

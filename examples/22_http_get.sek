@@ -1,0 +1,20 @@
+# Example: http_get + json_parse + json_get.
+# Fetches data from a public API (httpbin.org/get) and reads a few fields.
+
+let url = "https://httpbin.org/get"
+let response = http_get(url)
+
+if response == ""
+    print "GET failed (empty response)"
+else
+    print "GET response length OK"
+
+    let obj = json_parse(response)
+    print "json_parse type: " + json_type(obj)
+
+    let origin = json_get(obj, "origin")
+    print "origin: " + origin
+
+    let url2 = json_get(obj, "url")
+    print "url: " + url2
+end

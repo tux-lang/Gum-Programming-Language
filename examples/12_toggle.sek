@@ -1,0 +1,14 @@
+# Пример toggle.
+# Команда toggle переключает булевую переменную:
+# true  -> false
+# false -> true
+# Здесь переменная включается и выключается несколько раз.
+
+let enabled = true
+print enabled
+
+toggle enabled
+print enabled
+
+toggle enabled
+print enabled

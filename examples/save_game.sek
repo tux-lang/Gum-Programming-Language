@@ -1,0 +1,52 @@
+# Library: save_game.sek
+# Helpers for saving and loading game progress using built-in save/load
+# Usage:
+#   use "save_game.sek"
+#   set current_save_slot = "slot1"
+#   save_slot()    ; saves all global variables to saves/slot1.seksave
+#   load_slot()    ; loads variables from saves/slot1.seksave
+
+let current_save_slot = "slot1"
+let saves_dir = "saves"
+
+group ensure_saves_dir
+    if !exists(saves_dir)
+        mkdir(saves_dir)
+    end
+end
+
+group save_slot
+    ensure_saves_dir()
+    let path = saves_dir + "/" + current_save_slot + ".seksave"
+    save(path)
+    print "Saved to " + path
+end
+
+group load_slot
+    let path = saves_dir + "/" + current_save_slot + ".seksave"
+    load(path)
+    print "Loaded from " + path
+end
+
+group quicksave
+    ensure_saves_dir()
+    let path = saves_dir + "/quick.seksave"
+    save(path)
+    print "Quicksave: " + path
+end
+
+group quickload
+    let path = saves_dir + "/quick.seksave"
+    load(path)
+    print "Quickload: " + path
+end
+
+group delete_slot
+    let path = saves_dir + "/" + current_save_slot + ".seksave"
+    if exists(path)
+        remove(path)
+        print "Deleted " + path
+    else
+        print "No save at " + path
+    end
+end

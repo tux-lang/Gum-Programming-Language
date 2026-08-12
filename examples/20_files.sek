@@ -1,0 +1,28 @@
+# Example: file functions.
+# File commands are built in and do not need the os_ prefix.
+
+let dir = "examples/file_demo"
+let file = dir + "/note.txt"
+let renamed = dir + "/renamed.txt"
+let copied = dir + "/copy.txt"
+
+mkdir(dir)
+touch(file)
+write(file, "hello from Gum")
+append(file, " + appended text")
+
+print read(file)
+print exists(file)
+print isfile(file)
+print isdir(dir)
+
+rename(file, renamed)
+copy(renamed, copied)
+
+print read(copied)
+
+remove(renamed)
+remove(copied)
+rmdir(dir)
+
+print "file demo done"

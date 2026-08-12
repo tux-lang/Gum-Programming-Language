@@ -1,0 +1,16 @@
+# Example: assert(...)
+# assert(condition, message) stops the script if condition is false.
+
+let delay = 250
+let enabled = true
+let title = "Gum"
+
+assert(type(delay) == "number", "delay must be number")
+assert(delay >= 0, "delay cannot be negative")
+assert(type(enabled) == "boolean", "enabled must be boolean")
+assert(type(title) == "string", "title must be string")
+
+print "all checks passed"
+
+# Try uncommenting this line to see a useful error:
+# assert(delay < 0, "delay should be negative")

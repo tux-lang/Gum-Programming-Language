@@ -1,0 +1,16 @@
+# Example: type(...)
+# type(value) returns the value type as text.
+
+let score = 100
+let name = "Gum"
+let enabled = true
+let empty = seed(123)
+
+print "score type: " + type(score)
+print "name type: " + type(name)
+print "enabled type: " + type(enabled)
+print "empty type: " + type(empty)
+
+if type(score) == "number"
+print "score is a number"
+end

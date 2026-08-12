@@ -1,0 +1,21 @@
+# Example: http_post with a JSON body.
+# Posts a JSON payload to httpbin.org/post which echoes it back under "json".
+
+let data = "{\"name\":\"Gum\",\"year\":2026,\"ok\":true,\"tags\":[\"a\",\"b\",\"c\"]}"
+let response = http_post("https://httpbin.org/post", data, "application/json")
+
+if response == ""
+    print "POST failed (empty response)"
+else
+    let obj = json_parse(response)
+
+    let echo = json_get(obj, "json")
+    print "echo.name: " + json_get(echo, "name")
+    print "echo.year: " + json_get(echo, "year")
+    print "echo.ok: " + json_get(echo, "ok")
+
+    let tags = json_get(echo, "tags")
+    print "tags count: " + json_array_length(tags)
+    print "tags[0]: " + json_array_get(tags, 0)
+    print "tags[2]: " + json_array_get(tags, 2)
+end

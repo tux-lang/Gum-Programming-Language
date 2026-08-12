@@ -1,0 +1,18 @@
+# Example: group.
+# group creates a named set of commands.
+# Call the group by writing its name with parentheses: setup()
+
+let computer_name = "nodehost"
+
+group show_prompt
+    print "root@" + computer_name + ":~$"
+end
+
+group install_tools
+    print "installing terminal"
+    print "installing editor"
+    print "installing browser"
+end
+
+show_prompt()
+install_tools()

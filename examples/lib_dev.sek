@@ -1,0 +1,7 @@
+# Example library for examples/14_use.sek.
+# You can put shared settings, variables, checks, and hotkeys here.
+
+let app_name = "Gum"
+let debug = true
+
+print "library loaded: " + app_name

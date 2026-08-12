@@ -1,0 +1,8 @@
+# Example: connecting another .sek file.
+
+use "lib_dev.sek"
+
+print "app: " + app_name
+print "app_name type: " + type(app_name)
+assert(debug == true, "debug must be true")
+print "assert passed"

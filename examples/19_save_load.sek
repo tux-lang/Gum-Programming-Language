@@ -1,0 +1,22 @@
+# Example: save / load.
+# save writes current variables to a file.
+# load restores variables from that file.
+
+let player_name = "root"
+let level = 1
+let linux = "Arch Linux"
+let has_terminal = true
+
+save "examples/save_test.seksave"
+
+set player_name = "changed"
+set level = 99
+set linux = "broken"
+set has_terminal = false
+
+load "examples/save_test.seksave"
+
+print "player: " + player_name
+print "level: " + level
+print "linux: " + linux
+print "terminal: " + has_terminal
